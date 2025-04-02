@@ -1,0 +1,7 @@
+{
+  "targetSample": 48000,
+  "musicPath": "music/",
+  "soundEffectPath": "soundEffect/",
+  "speechPath": "speech/",
+  "mixLanguages": true
+}
