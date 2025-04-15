@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=64.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "data_augmentation_pipeline"
+version = "0.1.0"
+description = "A pipeline for audio data augmentation"
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = [
+    "numpy",
+    "pydub",
+]
+
+[tool.setuptools]
+packages = ["components"] 
