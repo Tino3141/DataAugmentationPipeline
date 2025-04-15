@@ -1,0 +1,82 @@
+[
+    {
+        "language": "DE",
+        "id": "VPFfJQ6Y0mu",
+        "segment": "W000000",
+        "file_name": "DE_VPFfJQ6Y0mu_W000000.mp3",
+        "start": 0,
+        "end": 4.669
+    },
+    {
+        "language": "DE",
+        "id": "VPFfJQ6Y0mu",
+        "segment": "W000001",
+        "file_name": "DE_VPFfJQ6Y0mu_W000001.mp3",
+        "start": 5.002721213445051,
+        "end": 19.11172121344505
+    },
+    {
+        "language": "EN",
+        "id": "vJ-nSFg0cJy",
+        "segment": "W000000",
+        "file_name": "EN_vJ-nSFg0cJy_W000000.mp3",
+        "start": 18.167309286628882,
+        "end": 29.967309286628883
+    },
+    {
+        "language": "DE",
+        "id": "VPFfJQ6Y0mu",
+        "segment": "W000002",
+        "file_name": "DE_VPFfJQ6Y0mu_W000002.mp3",
+        "start": 29.94600759575212,
+        "end": 35.76600759575212
+    },
+    {
+        "language": "EN",
+        "id": "vJ-nSFg0cJy",
+        "segment": "W000001",
+        "file_name": "EN_vJ-nSFg0cJy_W000001.mp3",
+        "start": 35.311798607551786,
+        "end": 52.13775694088512
+    },
+    {
+        "language": "EN",
+        "id": "vJ-nSFg0cJy",
+        "segment": "W000002",
+        "file_name": "EN_vJ-nSFg0cJy_W000002.mp3",
+        "start": 54.08481660196267,
+        "end": 67.39581660196266
+    },
+    {
+        "language": "DE",
+        "id": "VPFfJQ6Y0mu",
+        "segment": "W000003",
+        "file_name": "DE_VPFfJQ6Y0mu_W000003.mp3",
+        "start": 68.21772674364581,
+        "end": 87.69372674364581
+    },
+    {
+        "language": "DE",
+        "id": "VPFfJQ6Y0mu",
+        "segment": "W000008",
+        "file_name": "DE_VPFfJQ6Y0mu_W000008.mp3",
+        "start": 86.4736209377591,
+        "end": 97.98462093775909
+    },
+    {
+        "language": "DE",
+        "id": "VPFfJQ6Y0mu",
+        "segment": "W000009",
+        "file_name": "DE_VPFfJQ6Y0mu_W000009.mp3",
+        "start": 98.27887302293841,
+        "end": 109.06087302293841
+    },
+    {
+        "language": "DE",
+        "id": "UhqGIcmQ1Jo",
+        "segment": "W000000",
+        "file_name": "DE_UhqGIcmQ1Jo_W000000.mp3",
+        "start": 109.14107454586485,
+        "end": 119.57107454586485
+    }
+]

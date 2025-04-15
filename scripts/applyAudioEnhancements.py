@@ -2,8 +2,10 @@ import os
 import librosa
 import soundfile as sf
 import argparse
+import json
 from components.AudioEffects import AudioEffects
 from components.MusicHandler import MusicHandler
+from components.AudioConversation import AudioConversation
 
 def main():
     # Parse command line arguments
@@ -14,6 +16,10 @@ def main():
                         help='Path to output audio file')
     parser.add_argument('--sample-rate', type=int, default=48000,
                         help='Target sample rate')
+    parser.add_argument('--output-dir', type=str, default='samples/output2',
+                        help='Directory to save output audio files')
+    parser.add_argument('--audio-root', type=str, default='speech',
+                        help='Directory containing audio files')
     parser.add_argument('--sound-effects', action='store_true',
                         help='Apply sound effects')
     parser.add_argument('--sound-effects-dir', type=str, default='soundEffects',
@@ -32,13 +38,19 @@ def main():
                         help='Crossfade duration for music in seconds')
     
     args = parser.parse_args()
-    
+    print(os.path.dirname(args.audio_root))
     # Create output directory if it doesn't exist
     os.makedirs(os.path.dirname(args.output), exist_ok=True)
+
+    with open('/Users/constantinpinkl/University/Research/SpeakerDiarization/Datasets/DataAugmentationPipeline/scripts/dictionary.json', 'r', encoding='utf-8') as f:
+        segmentDict = json.load(f)
     
+    conversation = AudioConversation()
+    conversation.augmentAudio(segmentDict, 3, 10, os.path.dirname(args.output_dir), args.audio_root, 0, 0.75)
+
     # Load input audio
     print(f"Loading input audio from {args.input}...")
-    audio, sr = librosa.load(args.input, sr=args.sample_rate)
+    audio, sr = librosa.load(os.path.dirname(args.output_dir) + "/output.wav", sr=args.sample_rate)
     
     # Apply sound effects if requested
     if args.sound_effects:

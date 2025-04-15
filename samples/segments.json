@@ -1,0 +1,82 @@
+[
+    {
+        "language": "DE",
+        "id": "T_GAtp86EX0",
+        "segment": "W000000",
+        "file_name": "DE_T_GAtp86EX0_W000000.mp3",
+        "start": 0,
+        "end": 17.212
+    },
+    {
+        "language": "DE",
+        "id": "T_GAtp86EX0",
+        "segment": "W000001",
+        "file_name": "DE_T_GAtp86EX0_W000001.mp3",
+        "start": 17.61857309628553,
+        "end": 27.25457309628553
+    },
+    {
+        "language": "DE",
+        "id": "T_GAtp86EX0",
+        "segment": "W000002",
+        "file_name": "DE_T_GAtp86EX0_W000002.mp3",
+        "start": 27.44241547861203,
+        "end": 46.57741547861204
+    },
+    {
+        "language": "DE",
+        "id": "T_GAtp86EX0",
+        "segment": "W000003",
+        "file_name": "DE_T_GAtp86EX0_W000003.mp3",
+        "start": 46.87855442899444,
+        "end": 50.93855442899444
+    },
+    {
+        "language": "DE",
+        "id": "T_GAtp86EX0",
+        "segment": "W000004",
+        "file_name": "DE_T_GAtp86EX0_W000004.mp3",
+        "start": 50.087021005575075,
+        "end": 68.2089793389084
+    },
+    {
+        "language": "DE",
+        "id": "VAjLKkuMnW0",
+        "segment": "W000000",
+        "file_name": "DE_VAjLKkuMnW0_W000000.mp3",
+        "start": 68.45426699681518,
+        "end": 76.09826699681518
+    },
+    {
+        "language": "DE",
+        "id": "VAjLKkuMnW0",
+        "segment": "W000001",
+        "file_name": "DE_VAjLKkuMnW0_W000001.mp3",
+        "start": 75.96952043456385,
+        "end": 88.60547876789718
+    },
+    {
+        "language": "DE",
+        "id": "VAjLKkuMnW0",
+        "segment": "W000002",
+        "file_name": "DE_VAjLKkuMnW0_W000002.mp3",
+        "start": 89.43083973886004,
+        "end": 107.15483973886005
+    },
+    {
+        "language": "EN",
+        "id": "uu1aQjvyKPu",
+        "segment": "W000000",
+        "file_name": "EN_uu1aQjvyKPu_W000000.mp3",
+        "start": 105.6146330482777,
+        "end": 120.3006330482777
+    },
+    {
+        "language": "EN",
+        "id": "uu1aQjvyKPu",
+        "segment": "W000001",
+        "file_name": "EN_uu1aQjvyKPu_W000001.mp3",
+        "start": 121.75727761112745,
+        "end": 127.52927761112745
+    }
+]
