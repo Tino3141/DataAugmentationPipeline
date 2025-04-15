@@ -1,0 +1,82 @@
+[
+    {
+        "language": "EN",
+        "id": "v7CZhEX_C9U",
+        "segment": "W000000",
+        "file_name": "EN_v7CZhEX_C9U_W000000.mp3",
+        "start": 0,
+        "end": 14.652
+    },
+    {
+        "language": "EN",
+        "id": "v7CZhEX_C9U",
+        "segment": "W000001",
+        "file_name": "EN_v7CZhEX_C9U_W000001.mp3",
+        "start": 16.452050003684246,
+        "end": 34.14705000368425
+    },
+    {
+        "language": "EN",
+        "id": "thnuYfVFCok",
+        "segment": "W000000",
+        "file_name": "EN_thnuYfVFCok_W000000.mp3",
+        "start": 32.30102686274452,
+        "end": 36.257026862744524
+    },
+    {
+        "language": "EN",
+        "id": "v7CZhEX_C9U",
+        "segment": "W000002",
+        "file_name": "EN_v7CZhEX_C9U_W000002.mp3",
+        "start": 36.632640597200684,
+        "end": 52.436640597200686
+    },
+    {
+        "language": "EN",
+        "id": "unHVE42Hgsc",
+        "segment": "W000000",
+        "file_name": "EN_unHVE42Hgsc_W000000.mp3",
+        "start": 51.22372109374678,
+        "end": 61.902721093746784
+    },
+    {
+        "language": "EN",
+        "id": "thnuYfVFCok",
+        "segment": "W000001",
+        "file_name": "EN_thnuYfVFCok_W000001.mp3",
+        "start": 63.213257486064556,
+        "end": 68.47625748606455
+    },
+    {
+        "language": "EN",
+        "id": "thnuYfVFCok",
+        "segment": "W000002",
+        "file_name": "EN_thnuYfVFCok_W000002.mp3",
+        "start": 68.10505332544193,
+        "end": 79.19205332544193
+    },
+    {
+        "language": "EN",
+        "id": "thnuYfVFCok",
+        "segment": "W000003",
+        "file_name": "EN_thnuYfVFCok_W000003.mp3",
+        "start": 80.2869325217012,
+        "end": 87.1459325217012
+    },
+    {
+        "language": "EN",
+        "id": "v7CZhEX_C9U",
+        "segment": "W000003",
+        "file_name": "EN_v7CZhEX_C9U_W000003.mp3",
+        "start": 85.45715192679064,
+        "end": 97.10115192679065
+    },
+    {
+        "language": "EN",
+        "id": "unHVE42Hgsc",
+        "segment": "W000001",
+        "file_name": "EN_unHVE42Hgsc_W000001.mp3",
+        "start": 98.13646879323484,
+        "end": 116.79446879323484
+    }
+]
