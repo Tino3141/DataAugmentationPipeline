@@ -30,7 +30,7 @@ def load_audioFilesFromDir(basePath):
         if id_ not in dictionary[lang]:
             dictionary[lang][id_] = []
         if segment not in dictionary[lang][id_]:
-            dictionary[lang][id_].append({"segment": segment, "duration": duration})
+            dictionary[lang][id_].append({"segment": segment, "duration": duration, "file_name": f})
     
     # Sort segments in dictionary by segment name
     for lang in dictionary:

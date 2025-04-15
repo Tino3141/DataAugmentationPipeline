@@ -1,0 +1,82 @@
+[
+    {
+        "language": "EN",
+        "id": "vrlvbhHughg",
+        "segment": "W000000",
+        "file_name": "EN_vrlvbhHughg_W000000.mp3",
+        "start": 0,
+        "end": 11.74
+    },
+    {
+        "language": "EN",
+        "id": "vrlvbhHughg",
+        "segment": "W000001",
+        "file_name": "EN_vrlvbhHughg_W000001.mp3",
+        "start": 12.421407719473704,
+        "end": 21.796407719473706
+    },
+    {
+        "language": "EN",
+        "id": "vrlvbhHughg",
+        "segment": "W000002",
+        "file_name": "EN_vrlvbhHughg_W000002.mp3",
+        "start": 21.253135916943098,
+        "end": 24.7511359169431
+    },
+    {
+        "language": "EN",
+        "id": "uOIBDVdu-su",
+        "segment": "W000000",
+        "file_name": "EN_uOIBDVdu-su_W000000.mp3",
+        "start": 25.238404858993764,
+        "end": 36.42740485899377
+    },
+    {
+        "language": "EN",
+        "id": "uOIBDVdu-su",
+        "segment": "W000001",
+        "file_name": "EN_uOIBDVdu-su_W000001.mp3",
+        "start": 36.7542649345482,
+        "end": 41.8132649345482
+    },
+    {
+        "language": "EN",
+        "id": "vrlvbhHughg",
+        "segment": "W000003",
+        "file_name": "EN_vrlvbhHughg_W000003.mp3",
+        "start": 40.60195120885344,
+        "end": 50.024951208853444
+    },
+    {
+        "language": "EN",
+        "id": "vCyA9OMTQUE",
+        "segment": "W000000",
+        "file_name": "EN_vCyA9OMTQUE_W000000.mp3",
+        "start": 50.11546518649281,
+        "end": 65.59946518649281
+    },
+    {
+        "language": "EN",
+        "id": "uOIBDVdu-su",
+        "segment": "W000002",
+        "file_name": "EN_uOIBDVdu-su_W000002.mp3",
+        "start": 66.18349167077845,
+        "end": 71.54849167077845
+    },
+    {
+        "language": "EN",
+        "id": "vCyA9OMTQUE",
+        "segment": "W000001",
+        "file_name": "EN_vCyA9OMTQUE_W000001.mp3",
+        "start": 71.64521486479268,
+        "end": 74.75221486479268
+    },
+    {
+        "language": "EN",
+        "id": "vrlvbhHughg",
+        "segment": "W000004",
+        "file_name": "EN_vrlvbhHughg_W000004.mp3",
+        "start": 74.2691275815172,
+        "end": 88.4091275815172
+    }
+]

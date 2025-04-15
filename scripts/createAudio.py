@@ -2,6 +2,7 @@ import json
 import random
 import numpy as np
 from pydub import AudioSegment
+import os
 
 LANGUAGES = ["DE", "EN"]
 
@@ -42,6 +43,7 @@ def arrangeSegments(speakers, dict, num_segments):
             "language": speaker['language'],
             "id": speaker['key'],
             "segment": segment['segment'],
+            "file_name": segment['file_name'],
             "start": 0 if i == 0 else segments[i-1]["end"],
             "end": segment['duration'] if i == 0 else segments[i-1]["end"] + segment['duration']
         })
@@ -58,59 +60,75 @@ def applyGaussianGap(segments, mean, std):
             gap = abs(gap)
         if gap < 0:
             print("Gap is negative: ", gap)
-        segments[i]["start"] = segments[i-1]["end"] + gap
-        segments[i]["end"] = segments[i]["start"] + (segments[i]["end"] - segments[i]["start"])
+        segments[i]["start"] = segments[i]["start"] + gap
+        segments[i]["end"] = segments[i]["end"] + gap
     return segments
 
-def createAudio(segments, output_path):
+# Create Audio from segments
+def createAudio(segments, audio_root, output_path):
     # Create empty audio segment
-    final_audio = AudioSegment.empty()
+    # Get total duration from last segment's end time
+    total_duration_ms = segments[-1]['end'] * 1000  # Convert to milliseconds
+    final_audio = AudioSegment.silent(duration=total_duration_ms)
     
     # Add each segment
     for segment in segments:
         # Load audio file
-        audio_path = f"audio/{segment['language']}/{segment['id']}.wav"
-        audio = AudioSegment.from_wav(audio_path)
+        audio_path = f"{audio_root}/{segment['language']}/{segment['file_name']}"
+        audio = AudioSegment.from_file(audio_path)
         
         # Extract segment portion
         start_ms = segment['start'] * 1000  # Convert to milliseconds
         end_ms = segment['end'] * 1000
-        segment_audio = audio[start_ms:end_ms]
+        segment_audio = audio
         
         # Add silence before segment if needed
         if len(final_audio) < start_ms:
             silence_duration = start_ms - len(final_audio)
-            final_audio += AudioSegment.silent(duration=silence_duration)
+            final_audio = final_audio.overlay(AudioSegment.silent(duration=silence_duration), position=len(final_audio))
             
-        # Append segment
-        final_audio += segment_audio
-        
+        # Overlay segment at the correct position
+        final_audio = final_audio.overlay(segment_audio, position=start_ms)
     # Export final audio
     final_audio.export(output_path, format="wav")
 
+
+def augmentAudio(segmentDict, num_speakers, num_segments, output_dir, audio_root, mean=0, std=0.75):
+    selected_segments = pickSpeakers(segmentDict, num_speakers)
+    # Arrange Segments
+    segments = arrangeSegments(selected_segments, segmentDict, num_segments)
+
+    # Apply Gaussian Gap
+    segments = applyGaussianGap(segments, mean, std) # Mean, Std
+
+    # Create Audio
+    # Create output directory if it doesn't exist
+    os.makedirs(output_dir, exist_ok=True)
     
+    # Create output path
+    output_path = os.path.join(output_dir, "output.wav")
+    createAudio(segments, audio_root, output_path)
+
+    # Write segments to file
+    with open(os.path.join(output_dir, "segments.json"), 'w', encoding='utf-8') as f:
+        json.dump(segments, f, ensure_ascii=False, indent=4)
 
 if __name__ == "__main__":
-    with open('dictionary.json', 'r', encoding='utf-8') as f:
-        fileDict = json.load(f)
-    
+    # Load dictionary
+    with open('/Users/constantinpinkl/University/Research/SpeakerDiarization/Datasets/DataAugmentationPipeline/scripts/dictionary.json', 'r', encoding='utf-8') as f:
+        segmentDict = json.load(f)
+        
     # Get all languages
-    languages = list(fileDict.keys())
+    languages = list(segmentDict.keys())
     print("All Language: ", languages)
     print("Selected Languages: ", LANGUAGES)
 
-    # Pick Speakers
-    selected_segments = pickSpeakers(fileDict, 2)
-    print("Selected Segments: ", selected_segments)
+    # Extract inputs to variables
+    num_speakers = 3
+    num_segments = 10
+    output_dir = "/Users/constantinpinkl/University/Research/SpeakerDiarization/Datasets/DataAugmentationPipeline/samples/output"
+    audio_root = "/Users/constantinpinkl/University/Research/SpeakerDiarization/Datasets/DataAugmentationPipeline/speech"
+    gap_mean = 0
+    gap_std = 0.75
 
-    # Arrange Segments
-    segments = arrangeSegments(selected_segments, fileDict, 10)
-    print("Segments: ", segments)
-
-    # Apply Gaussian Gap
-    segments = applyGaussianGap(segments, 0, 0.75) # Mean, Std
-    print("Segments with Gap: ", segments)
-
-    # Write segments to file
-    with open('segments_gapped.json', 'w', encoding='utf-8') as f:
-        json.dump(segments, f, ensure_ascii=False, indent=4)
+    augmentAudio(segmentDict, num_speakers, num_segments, output_dir, audio_root, gap_mean, gap_std)
