@@ -1,0 +1,72 @@
+[
+    {
+        "language": "EN",
+        "id": "uR9fyOkGHcu",
+        "segment": "W000000",
+        "start": 0,
+        "end": 9.033
+    },
+    {
+        "language": "EN",
+        "id": "uR9fyOkGHcu",
+        "segment": "W000001",
+        "start": 9.033,
+        "end": 16.707
+    },
+    {
+        "language": "EN",
+        "id": "uR9fyOkGHcu",
+        "segment": "W000002",
+        "start": 16.707,
+        "end": 27.726
+    },
+    {
+        "language": "EN",
+        "id": "uR9fyOkGHcu",
+        "segment": "W000003",
+        "start": 27.726,
+        "end": 35.754
+    },
+    {
+        "language": "DE",
+        "id": "xnzJitcqHGE",
+        "segment": "W000016",
+        "start": 35.754,
+        "end": 41.763999999999996
+    },
+    {
+        "language": "DE",
+        "id": "xnzJitcqHGE",
+        "segment": "W000033",
+        "start": 41.763999999999996,
+        "end": 46.12799999999999
+    },
+    {
+        "language": "DE",
+        "id": "xnzJitcqHGE",
+        "segment": "W000063",
+        "start": 46.12799999999999,
+        "end": 51.71399999999999
+    },
+    {
+        "language": "EN",
+        "id": "uR9fyOkGHcu",
+        "segment": "W000004",
+        "start": 51.71399999999999,
+        "end": 61.44199999999999
+    },
+    {
+        "language": "EN",
+        "id": "uR9fyOkGHcu",
+        "segment": "W000005",
+        "start": 61.44199999999999,
+        "end": 79.21799999999999
+    },
+    {
+        "language": "EN",
+        "id": "uR9fyOkGHcu",
+        "segment": "W000006",
+        "start": 79.21799999999999,
+        "end": 88.67595833333333
+    }
+]

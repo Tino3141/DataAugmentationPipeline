@@ -1,0 +1,72 @@
+[
+    {
+        "language": "EN",
+        "id": "vzqaEehvKLI",
+        "segment": "W000000",
+        "start": 0,
+        "end": 10.577
+    },
+    {
+        "language": "DE",
+        "id": "TtaVi65xKXy",
+        "segment": "W000000",
+        "start": 11.211827745113805,
+        "end": 34.765
+    },
+    {
+        "language": "EN",
+        "id": "vzqaEehvKLI",
+        "segment": "W000001",
+        "start": 35.69288123184498,
+        "end": 45.071
+    },
+    {
+        "language": "EN",
+        "id": "vzqaEehvKLI",
+        "segment": "W000002",
+        "start": 46.31603238269997,
+        "end": 48.516999999999996
+    },
+    {
+        "language": "EN",
+        "id": "vzqaEehvKLI",
+        "segment": "W000003",
+        "start": 48.569171805525414,
+        "end": 56.666999999999994
+    },
+    {
+        "language": "EN",
+        "id": "vzqaEehvKLI",
+        "segment": "W000004",
+        "start": 56.69078359440376,
+        "end": 61.84499999999999
+    },
+    {
+        "language": "EN",
+        "id": "vzqaEehvKLI",
+        "segment": "W000005",
+        "start": 62.51480639811837,
+        "end": 69.11099999999999
+    },
+    {
+        "language": "DE",
+        "id": "TtaVi65xKXy",
+        "segment": "W000001",
+        "start": 69.68280970618753,
+        "end": 80.65899999999999
+    },
+    {
+        "language": "EN",
+        "id": "vzqaEehvKLI",
+        "segment": "W000006",
+        "start": 80.15946219370952,
+        "end": 96.70299999999999
+    },
+    {
+        "language": "DE",
+        "id": "TtaVi65xKXy",
+        "segment": "W000002",
+        "start": 96.50512559964211,
+        "end": 126.70299999999999
+    }
+]
