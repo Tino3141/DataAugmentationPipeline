@@ -1,0 +1,82 @@
+[
+    {
+        "language": "EN",
+        "id": "uknTyPWkkxy",
+        "segment": "W000000",
+        "file_name": "EN_uknTyPWkkxy_W000000.mp3",
+        "start": 0,
+        "end": 27.79
+    },
+    {
+        "language": "EN",
+        "id": "uknTyPWkkxy",
+        "segment": "W000001",
+        "file_name": "EN_uknTyPWkkxy_W000001.mp3",
+        "start": 28.923707038610537,
+        "end": 35.27370703861054
+    },
+    {
+        "language": "EN",
+        "id": "uknTyPWkkxy",
+        "segment": "W000002",
+        "file_name": "EN_uknTyPWkkxy_W000002.mp3",
+        "start": 34.79298112277401,
+        "end": 38.64698112277401
+    },
+    {
+        "language": "DE",
+        "id": "Wow5cnijxYE",
+        "segment": "W000000",
+        "file_name": "DE_Wow5cnijxYE_W000000.mp3",
+        "start": 37.65240362191589,
+        "end": 50.01240362191589
+    },
+    {
+        "language": "EN",
+        "id": "uknTyPWkkxy",
+        "segment": "W000003",
+        "file_name": "EN_uknTyPWkkxy_W000003.mp3",
+        "start": 50.32905816293114,
+        "end": 60.01005816293114
+    },
+    {
+        "language": "EN",
+        "id": "uknTyPWkkxy",
+        "segment": "W000004",
+        "file_name": "EN_uknTyPWkkxy_W000004.mp3",
+        "start": 60.32466714033281,
+        "end": 64.7906671403328
+    },
+    {
+        "language": "DE",
+        "id": "Wow5cnijxYE",
+        "segment": "W000001",
+        "file_name": "DE_Wow5cnijxYE_W000001.mp3",
+        "start": 64.52080149472252,
+        "end": 72.27980149472252
+    },
+    {
+        "language": "DE",
+        "id": "Wow5cnijxYE",
+        "segment": "W000002",
+        "file_name": "DE_Wow5cnijxYE_W000002.mp3",
+        "start": 74.15844399157626,
+        "end": 83.12244399157626
+    },
+    {
+        "language": "EN",
+        "id": "uknTyPWkkxy",
+        "segment": "W000005",
+        "file_name": "EN_uknTyPWkkxy_W000005.mp3",
+        "start": 80.78523959442973,
+        "end": 89.39323959442973
+    },
+    {
+        "language": "DE",
+        "id": "Wow5cnijxYE",
+        "segment": "W000003",
+        "file_name": "DE_Wow5cnijxYE_W000003.mp3",
+        "start": 90.63116490133724,
+        "end": 100.27416490133724
+    }
+]

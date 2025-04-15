@@ -1,82 +1,82 @@
 [
     {
         "language": "DE",
-        "id": "T_GAtp86EX0",
+        "id": "Db3zvT3k2ik",
         "segment": "W000000",
-        "file_name": "DE_T_GAtp86EX0_W000000.mp3",
+        "file_name": "DE_Db3zvT3k2ik_W000000.mp3",
         "start": 0,
-        "end": 17.212
+        "end": 8.795
     },
     {
         "language": "DE",
-        "id": "T_GAtp86EX0",
+        "id": "WB3qoCNU6Yg",
+        "segment": "W000000",
+        "file_name": "DE_WB3qoCNU6Yg_W000000.mp3",
+        "start": 8.657048183729357,
+        "end": 24.787006517062693
+    },
+    {
+        "language": "DE",
+        "id": "WB3qoCNU6Yg",
         "segment": "W000001",
-        "file_name": "DE_T_GAtp86EX0_W000001.mp3",
-        "start": 17.61857309628553,
-        "end": 27.25457309628553
+        "file_name": "DE_WB3qoCNU6Yg_W000001.mp3",
+        "start": 26.591339414271886,
+        "end": 44.16333941427189
     },
     {
         "language": "DE",
-        "id": "T_GAtp86EX0",
+        "id": "UhqGIcmQ1Jo",
+        "segment": "W000000",
+        "file_name": "DE_UhqGIcmQ1Jo_W000000.mp3",
+        "start": 42.45678881878236,
+        "end": 52.88678881878236
+    },
+    {
+        "language": "DE",
+        "id": "WB3qoCNU6Yg",
         "segment": "W000002",
-        "file_name": "DE_T_GAtp86EX0_W000002.mp3",
-        "start": 27.44241547861203,
-        "end": 46.57741547861204
+        "file_name": "DE_WB3qoCNU6Yg_W000002.mp3",
+        "start": 53.394167054785584,
+        "end": 63.93212538811892
     },
     {
         "language": "DE",
-        "id": "T_GAtp86EX0",
+        "id": "UhqGIcmQ1Jo",
+        "segment": "W000001",
+        "file_name": "DE_UhqGIcmQ1Jo_W000001.mp3",
+        "start": 63.03525672729735,
+        "end": 79.99125672729735
+    },
+    {
+        "language": "DE",
+        "id": "UhqGIcmQ1Jo",
+        "segment": "W000002",
+        "file_name": "DE_UhqGIcmQ1Jo_W000002.mp3",
+        "start": 80.43364815213545,
+        "end": 92.14164815213545
+    },
+    {
+        "language": "DE",
+        "id": "WB3qoCNU6Yg",
         "segment": "W000003",
-        "file_name": "DE_T_GAtp86EX0_W000003.mp3",
-        "start": 46.87855442899444,
-        "end": 50.93855442899444
+        "file_name": "DE_WB3qoCNU6Yg_W000003.mp3",
+        "start": 91.70717386921021,
+        "end": 115.46317386921021
     },
     {
         "language": "DE",
-        "id": "T_GAtp86EX0",
+        "id": "WB3qoCNU6Yg",
         "segment": "W000004",
-        "file_name": "DE_T_GAtp86EX0_W000004.mp3",
-        "start": 50.087021005575075,
-        "end": 68.2089793389084
+        "file_name": "DE_WB3qoCNU6Yg_W000004.mp3",
+        "start": 116.39913858119384,
+        "end": 146.39913858119385
     },
     {
         "language": "DE",
-        "id": "VAjLKkuMnW0",
-        "segment": "W000000",
-        "file_name": "DE_VAjLKkuMnW0_W000000.mp3",
-        "start": 68.45426699681518,
-        "end": 76.09826699681518
-    },
-    {
-        "language": "DE",
-        "id": "VAjLKkuMnW0",
-        "segment": "W000001",
-        "file_name": "DE_VAjLKkuMnW0_W000001.mp3",
-        "start": 75.96952043456385,
-        "end": 88.60547876789718
-    },
-    {
-        "language": "DE",
-        "id": "VAjLKkuMnW0",
-        "segment": "W000002",
-        "file_name": "DE_VAjLKkuMnW0_W000002.mp3",
-        "start": 89.43083973886004,
-        "end": 107.15483973886005
-    },
-    {
-        "language": "EN",
-        "id": "uu1aQjvyKPu",
-        "segment": "W000000",
-        "file_name": "EN_uu1aQjvyKPu_W000000.mp3",
-        "start": 105.6146330482777,
-        "end": 120.3006330482777
-    },
-    {
-        "language": "EN",
-        "id": "uu1aQjvyKPu",
-        "segment": "W000001",
-        "file_name": "EN_uu1aQjvyKPu_W000001.mp3",
-        "start": 121.75727761112745,
-        "end": 127.52927761112745
+        "id": "WB3qoCNU6Yg",
+        "segment": "W000005",
+        "file_name": "DE_WB3qoCNU6Yg_W000005.mp3",
+        "start": 146.4329804497162,
+        "end": 160.8139804497162
     }
 ]
