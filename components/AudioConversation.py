@@ -65,8 +65,8 @@ class AudioConversation:
                 gap = abs(gap)
             if gap < 0:
                 print("Gap is negative: ", gap)
-            segments[i]["start"] = segments[i]["start"] + gap
-            segments[i]["end"] = segments[i]["end"] + gap
+            segments[i]["start"] = 0 + gap if i == 0 else segments[i-1]["end"] + gap
+            segments[i]["end"] = segments[i]["end"] - segments[i]["start"] + gap if i == 0 else segments[i-1]["end"] + gap + segments[i]["end"] - segments[i]["start"]
         return segments
 
     # Create Audio from segments
@@ -116,3 +116,5 @@ class AudioConversation:
         # Write segments to file
         with open(os.path.join(output_dir, "segments.json"), 'w', encoding='utf-8') as f:
             json.dump(segments, f, ensure_ascii=False, indent=4)
+
+        return segments
