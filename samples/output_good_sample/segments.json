@@ -1,0 +1,82 @@
+[
+    {
+        "language": "DE",
+        "id": "TKy5dSeEFfu",
+        "segment": "W000000",
+        "file_name": "DE_TKy5dSeEFfu_W000000.mp3",
+        "start": 0,
+        "end": 14.839
+    },
+    {
+        "language": "EN",
+        "id": "vQM2zaJVzLI",
+        "segment": "W000000",
+        "file_name": "EN_vQM2zaJVzLI_W000000.mp3",
+        "start": 13.357697470630931,
+        "end": 24.115000000000002
+    },
+    {
+        "language": "EN",
+        "id": "uhmiDwgSH7E",
+        "segment": "W000000",
+        "file_name": "EN_uhmiDwgSH7E_W000000.mp3",
+        "start": 25.046920147724734,
+        "end": 38.122
+    },
+    {
+        "language": "EN",
+        "id": "uhmiDwgSH7E",
+        "segment": "W000001",
+        "file_name": "EN_uhmiDwgSH7E_W000001.mp3",
+        "start": 38.62401275959827,
+        "end": 47.086
+    },
+    {
+        "language": "DE",
+        "id": "TKy5dSeEFfu",
+        "segment": "W000001",
+        "file_name": "DE_TKy5dSeEFfu_W000001.mp3",
+        "start": 46.97487185372375,
+        "end": 50.75299999999999
+    },
+    {
+        "language": "EN",
+        "id": "vQM2zaJVzLI",
+        "segment": "W000001",
+        "file_name": "EN_vQM2zaJVzLI_W000001.mp3",
+        "start": 50.23269847421619,
+        "end": 66.397
+    },
+    {
+        "language": "EN",
+        "id": "uhmiDwgSH7E",
+        "segment": "W000002",
+        "file_name": "EN_uhmiDwgSH7E_W000002.mp3",
+        "start": 65.23895713424959,
+        "end": 74.05495833333332
+    },
+    {
+        "language": "EN",
+        "id": "vQM2zaJVzLI",
+        "segment": "W000002",
+        "file_name": "EN_vQM2zaJVzLI_W000002.mp3",
+        "start": 73.42854926762996,
+        "end": 90.26295833333333
+    },
+    {
+        "language": "EN",
+        "id": "uhmiDwgSH7E",
+        "segment": "W000003",
+        "file_name": "EN_uhmiDwgSH7E_W000003.mp3",
+        "start": 90.35253742436907,
+        "end": 104.59495833333332
+    },
+    {
+        "language": "DE",
+        "id": "TKy5dSeEFfu",
+        "segment": "W000002",
+        "file_name": "DE_TKy5dSeEFfu_W000002.mp3",
+        "start": 103.79122543609327,
+        "end": 109.34895833333331
+    }
+]
