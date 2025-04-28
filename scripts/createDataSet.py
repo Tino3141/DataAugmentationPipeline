@@ -33,6 +33,13 @@ def main():
         default=10,
         help="Number of files per tar archive"
     )
+
+    parser.add_argument(
+        "--num_processors",
+        type=int,
+        default=12,
+        help="Number of processors to use for parallel processing"
+    )
     parser.add_argument(
         "--output_dir",
         default="output_data",
@@ -69,6 +76,20 @@ def main():
         help="Gain applied to sound effects"
     )
 
+    parser.add_argument(
+        "--num_speakers",
+        type=int,
+        default=3,
+        help="Number of speakers to use in the conversation"
+    )
+
+    parser.add_argument(
+        "--num_segments",
+        type=int,
+        default=10,
+        help="Number of segments to generate for each speaker"
+    )
+
     args = parser.parse_args()
 
     print("########################")
@@ -92,7 +113,9 @@ def main():
         coverage=args.coverage,
         min_gap=args.min_gap,
         effect_gain=args.effect_gain,
-        speakers=3,
+        speakers=args.num_speakers,
+        num_processors=args.num_processors,
+        num_segments=args.num_segments,
     )
     print("Starting data generation...")
     generator.generate_data()
