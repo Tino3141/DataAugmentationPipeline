@@ -29,48 +29,81 @@ class AudioConversation:
     def getSegmentsForSpeaker(self, speaker: str):
         return self.data.get_segementsForSpeaker(speaker)
 
-    def arrangeSegments(self, speakers, num_segments):
-        segments = [] # {"language": str, "id": str, "segment": str, "start": float, "end": float}
-        for i in range(num_segments):
-            # Pick random speaker with available segments
-            # Try to find valid speaker
-            valid_speaker = False
-            for speaker in speakers:
-                if speaker['counter'] < len(self.getSegmentsForSpeaker(speaker['key'])):
-                    valid_speaker = True
-                    break
+    # def arrangeSegments(self, speakers, num_segments):
+    #     segments = [] # {"language": str, "id": str, "segment": str, "start": float, "end": float}
+    #     for i in range(num_segments):
+    #         # Pick random speaker with available segments
+    #         # Try to find valid speaker
+    #         valid_speaker = False
+    #         for speaker in speakers:
+    #             if speaker['counter'] < len(self.getSegmentsForSpeaker(speaker['key'])):
+    #                 valid_speaker = True
+    #                 break
             
-            # Return segments if no valid speaker found
-            if not valid_speaker:
-                return segments
+    #         # Return segments if no valid speaker found
+    #         if not valid_speaker:
+    #             return segments
                 
-            # Pick random valid speaker
-            valid_speakers = [s for s in speakers if s['counter'] < len(self.getSegmentsForSpeaker(s['key']))]
-            speaker = random.choice(valid_speakers)
-            # Take segment from speaker
-            speaker_segments = self.getSegmentsForSpeaker(speaker['key'])
-            try:
-                segment = speaker_segments[speaker['counter']]
-            except:
-                print(len(valid_speakers))
-                print("Speaker has no more segments: ", speaker['key'])
-                print(len(speaker_segments))
-                print(speaker['counter'])
-                print("Segments for Speaker: ", len(speaker_segments))
-                continue
-            segments.append({
-                "language": speaker['language'],
-                "id": speaker['key'],
-                "segment": segment['json']['text'],
-                "file_name": segment['mp3']['path'],
-                "audio": segment["mp3"]["array"],
-                "sampling_rate": segment["mp3"]["sampling_rate"],
-                "start": 0 if i == 0 else segments[i-1]["end"],
-                "end": segment['json']['duration'] if i == 0 else segments[i-1]["end"] + segment['json']['duration']
-            })
-            speaker['counter'] += 1
+    #         # Pick random valid speaker
+    #         valid_speakers = [s for s in speakers if s['counter'] < len(self.getSegmentsForSpeaker(s['key']))]
+    #         speaker = random.choice(valid_speakers)
+    #         # Take segment from speaker
+    #         speaker_segments = self.getSegmentsForSpeaker(speaker['key'])
+            
+    #         segment = speaker_segments[speaker['counter']]
+            
+    #         segments.append({
+    #             "language": speaker['language'],
+    #             "id": speaker['key'],
+    #             "segment": segment['json']['text'],
+    #             "file_name": segment['mp3']['path'],
+    #             "audio": segment["mp3"]["array"],
+    #             "sampling_rate": segment["mp3"]["sampling_rate"],
+    #             "start": 0 if i == 0 else segments[i-1]["end"],
+    #             "end": segment['json']['duration'] if i == 0 else segments[i-1]["end"] + segment['json']['duration']
+    #         })
+    #         speaker['counter'] += 1
 
-        return segments
+    #     return segments
+    def arrangeSegments(self, speakers, num_segments):
+        # 1) Build a dict of full segment lists once
+        segments_by_key = {
+            sp['key']: self.getSegmentsForSpeaker(sp['key'])
+            for sp in speakers
+        }
+        # 2) Initialize counters in a separate dict
+        counters = {sp['key']: 0 for sp in speakers}
+
+        result = []
+        for _ in range(num_segments):
+            # 3) Filter speakers who still have segments left
+            avail = [
+                sp for sp in speakers
+                if counters[sp['key']] < len(segments_by_key[sp['key']])
+            ]
+            if not avail:
+                break
+
+            # 4) Pick one at random
+            speaker = random.choice(avail)
+            key     = speaker['key']
+            seglist = segments_by_key[key]
+            idx     = counters[key]
+
+            seg = seglist[idx]
+            result.append({
+                "language": speaker['language'],
+                "id":       key,
+                "segment":  seg['json']['text'],
+                "file_name":seg['mp3']['path'],
+                "audio":     seg['mp3']['array'],         # avoid copying if possible
+                "sampling_rate": seg['mp3']['sampling_rate'],
+                "start": result[-1]["end"] if result else 0,
+                "end":   (result[-1]["end"] if result else 0) + seg['json']['duration']
+            })
+            counters[key] += 1
+
+        return result
 
     # Apply Gap between segments using Gaussian Distribution
     def applyGaussianGap(self, segments, mean, std):
@@ -106,7 +139,6 @@ class AudioConversation:
 
             # Calculate position in milliseconds
             start_ms = segment['start'] * 1000  # Convert to milliseconds
-            
             # Overlay segment at the correct position
             final_audio = final_audio.overlay(segment_audio, position=start_ms)
         

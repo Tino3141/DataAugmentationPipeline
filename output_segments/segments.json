@@ -1,92 +1,92 @@
 [
     {
-        "language": "EN",
-        "id": "EN_B00000_S05382",
-        "segment": " When you walk along",
-        "file_name": "EN_B00000_S05382_W000000.mp3",
-        "sampling_rate": 24000,
+        "language": "DE",
+        "id": "DE_B00000_S07690",
+        "segment": " Eine CIA-Geheimstation reagiert nicht. Sie wurde nach dem Singapore-Desaster.",
+        "file_name": "DE_B00000_S07690_W000000.mp3",
+        "sampling_rate": 32000,
         "start": 0,
-        "end": 3.837
+        "end": 4.805
     },
     {
         "language": "EN",
-        "id": "EN_B00000_S05382",
-        "segment": " Das Problem, das was wir hier in der Kino sehen, ist im Prinzip...",
-        "file_name": "EN_B00000_S05382_W000001.mp3",
+        "id": "EN_B00000_S01751",
+        "segment": " They feel like they want to do something about it, but, uh, it's very difficult to, uh,",
+        "file_name": "EN_B00000_S01751_W000000.mp3",
         "sampling_rate": 24000,
-        "start": 4.671537775047072,
-        "end": 7.877999999999999
+        "start": 5.738229439854575,
+        "end": 9.423
+    },
+    {
+        "language": "DE",
+        "id": "DE_B00000_S07690",
+        "segment": " Eingesetzt und sollte die Operationen vor Ort überwachen.",
+        "file_name": "DE_B00000_S07690_W000001.mp3",
+        "sampling_rate": 32000,
+        "start": 9.760386562390567,
+        "end": 12.53
+    },
+    {
+        "language": "DE",
+        "id": "DE_B00000_S07690",
+        "segment": " Oh man. Ich kann dir gar nicht sagen, wie gut das schmeckt. Nach dem ganzen Scheiß fertig frah, schmeckt das nur... himmlisch.",
+        "file_name": "DE_B00000_S07690_W000002.mp3",
+        "sampling_rate": 32000,
+        "start": 12.612417672277504,
+        "end": 22.157000000000004
+    },
+    {
+        "language": "DE",
+        "id": "DE_B00000_S07690",
+        "segment": " Diesen gesetzlosen Sumpf können wir richtig gehen froh sein. Über unser ach so wichtiges Mandat.",
+        "file_name": "DE_B00000_S07690_W000003.mp3",
+        "sampling_rate": 32000,
+        "start": 23.13522503652723,
+        "end": 28.456000000000003
+    },
+    {
+        "language": "DE",
+        "id": "DE_B00000_S07690",
+        "segment": " Wenn der mit voller Kraft hier ankommt, haben wir es mit einem waschechten Orkan zu tun. Hier, nimm. Nicht, dass du noch weggeweht wirst.",
+        "file_name": "DE_B00000_S07690_W000004.mp3",
+        "sampling_rate": 32000,
+        "start": 28.628413507286798,
+        "end": 36.24900000000001
+    },
+    {
+        "language": "DE",
+        "id": "DE_B00000_S07690",
+        "segment": " Sie verkaufen Menschen für jeden erdenklichen Zweck. Deshalb der Angriff auf das Elendsviertel.",
+        "file_name": "DE_B00000_S07690_W000005.mp3",
+        "sampling_rate": 32000,
+        "start": 37.88587174382696,
+        "end": 41.44400000000001
     },
     {
         "language": "EN",
-        "id": "EN_B00000_S05382",
-        "segment": " The economic interests override everything else",
-        "file_name": "EN_B00000_S05382_W000002.mp3",
+        "id": "EN_B00000_S01751",
+        "segment": " You know, to rail against this, this society that is, uh,",
+        "file_name": "EN_B00000_S01751_W000001.mp3",
         "sampling_rate": 24000,
-        "start": 8.497871811043987,
-        "end": 14.176999999999998
-    },
-    {
-        "language": "EN",
-        "id": "EN_B00000_S05382",
-        "segment": " The critique is yeaah, the Ausweitung der Kino in der Pampa.",
-        "file_name": "EN_B00000_S05382_W000003.mp3",
-        "sampling_rate": 24000,
-        "start": 14.584271597058493,
-        "end": 18.115999999999996
+        "start": 41.04234882072334,
+        "end": 45.044000000000004
     },
     {
         "language": "DE",
-        "id": "DE_B00000_S02411",
-        "segment": " Er kann nicht anfangen, liebe Genossinnen und Genossen, unmögliche Fernsehen. Er hätte eine andere Rede machen müssen. Er hätte eine Rede machen für die Bürgerinnen und Bürger. Nun hatte er nicht zwei.",
-        "file_name": "DE_B00000_S02411_W000000.mp3",
-        "sampling_rate": 24000,
-        "start": 18.613847583195295,
-        "end": 28.116
+        "id": "DE_B00000_S07690",
+        "segment": " Der Superstorm wird immer verheerender, je höher wir kommen.",
+        "file_name": "DE_B00000_S07690_W000006.mp3",
+        "sampling_rate": 32000,
+        "start": 45.63553126525853,
+        "end": 48.47400000000001
     },
     {
         "language": "DE",
-        "id": "DE_B00000_S02411",
-        "segment": " Aber da muss man sich dann hinsetzen und sagen, ist egal, ich kürze das, ich muss ja nicht so ewig sprechen, sondern ich muss über die Probleme von heute sprechen und welche Vorstellung ich habe, sie zu lösen.",
-        "file_name": "DE_B00000_S02411_W000001.mp3",
-        "sampling_rate": 24000,
-        "start": 28.558633000355545,
-        "end": 37.760000000000005
-    },
-    {
-        "language": "DE",
-        "id": "DE_B00000_S02411",
-        "segment": " Da hab ich ja eine Sache gesagt, die ich dann später korrigiert habe.",
-        "file_name": "DE_B00000_S02411_W000002.mp3",
-        "sampling_rate": 24000,
-        "start": 37.826122318571244,
-        "end": 41.76699999999999
-    },
-    {
-        "language": "DE",
-        "id": "DE_B00000_S02411",
-        "segment": " Und tatsächlich abends klingelte das Telefon und Günther Schabowski war drin.",
-        "file_name": "DE_B00000_S02411_W000003.mp3",
-        "sampling_rate": 24000,
-        "start": 42.16597613729194,
-        "end": 45.892
-    },
-    {
-        "language": "DE",
-        "id": "DE_B00000_S02411",
-        "segment": " Man sagt dir, ja, der Egon Krins hat sich dafür nicht interessiert. Der hat gesagt, das bleibt bei dem Entwurf, der schon verabschiedet ist. Er hätte jetzt dazu auch keine Zeit. Tut mir leid, kann ich dir nichts anderes sagen. Na, okay.",
-        "file_name": "DE_B00000_S02411_W000004.mp3",
-        "sampling_rate": 24000,
-        "start": 46.45261017168878,
-        "end": 57.538999999999994
-    },
-    {
-        "language": "DE",
-        "id": "DE_B00000_S02411",
-        "segment": " Das Vertrauen in Modro wuchs in der Bevölkerung und das zu Grenz nicht. Er war eben durch seine Position vorher schon",
-        "file_name": "DE_B00000_S02411_W000005.mp3",
-        "sampling_rate": 24000,
-        "start": 58.237576663637995,
-        "end": 65.366
+        "id": "DE_B00000_S07690",
+        "segment": " Verstanden. Danke, Kane. Ich nehme das obere Deck, du das untere. Bereit?",
+        "file_name": "DE_B00000_S07690_W000007.mp3",
+        "sampling_rate": 32000,
+        "start": 49.333939107378775,
+        "end": 53.26199999999999
     }
 ]

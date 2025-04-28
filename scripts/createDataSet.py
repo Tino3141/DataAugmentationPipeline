@@ -24,13 +24,13 @@ def main():
     parser.add_argument(
         "--n_samples",
         type=int,
-        default=2,
+        default=20,
         help="Number of samples to generate"
     )
     parser.add_argument(
         "--files_per_tar",
         type=int,
-        default=1,
+        default=10,
         help="Number of files per tar archive"
     )
     parser.add_argument(

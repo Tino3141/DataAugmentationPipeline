@@ -29,12 +29,15 @@ if __name__ == "__main__":
     print(speakers)
 
     # Get segments for speaker
+    print("Getting Segments for Speaker")
     segments = audio_conversation.getSegmentsForSpeaker(speakers[0]['key'])
     print("Segements for Speaker: ",len(segments))
     print(segments[0])
 
     # Arrage Segments
+    print("Arranging Segments")
     segments = audio_conversation.arrangeSegments(speakers, 10)
+    print("Arranged Segments: ", len(segments))
     # Apply Gaussian Gap
     segments = audio_conversation.applyGaussianGap(segments, 0, 0.75)  # Mean, Std
     

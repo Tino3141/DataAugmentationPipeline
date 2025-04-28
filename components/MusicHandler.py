@@ -130,11 +130,14 @@ class MusicHandler:
         # Load music
         music, _ = self.load_music()
         
-        # Loop music if needed
-        if loop_music and len(music) < len(audio):
-            music = self.loop_music(music, len(audio))
-        elif len(music) > len(audio):
-            # Trim music if longer than audio
+        # Adjust music length to match audio
+        if len(music) < len(audio):
+            if loop_music:
+                music = self.loop_music(music, len(audio))
+            else:
+                pad_length = len(audio) - len(music)
+                music = np.pad(music, (0, pad_length), mode='constant')
+        else:
             music = music[:len(audio)]
             
         # Apply volume adjustment
