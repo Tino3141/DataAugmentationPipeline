@@ -18,6 +18,10 @@ class Dataloader:
             unique_speakers.add(item["speaker"])
         self.unique_speakers_list = list(unique_speakers)
 
+        self.length_music = len(self.background_music["train"])
+        self.length_sfx = len(self.sound_effects["train"])
+        self.length_speech = len(self.speech_samples["train"])
+
     def get_segementsForSpeaker(self, speaker: str):
         filtered_items = [(idx, item) for idx, item in enumerate(self.speech_samples["train"]["json"]) if item["speaker"] == speaker]
         filtered_items = [self.speech_samples["train"][item[0]] for item in filtered_items]
@@ -28,11 +32,11 @@ class Dataloader:
         return [{'language': speaker.split('_')[0], 'key': speaker, 'counter': 0} for speaker in selected_speakers]
 
     def get_random_music(self):
-        random_index = np.random.randint(0, len(self.background_music["train"]))
+        random_index = np.random.randint(0, self.length_music)
         return self.background_music["train"][random_index]
     
     def get_random_sound_effect(self):
-        random_index = np.random.randint(0, len(self.sound_effects["train"]))
+        random_index = np.random.randint(0, self.length_sfx)
         return self.sound_effects["train"][random_index][list(self.sound_effects["train"][random_index].keys())[0]]["array"]
     
     def _load_sound_effects(self, dataset_path: str):
