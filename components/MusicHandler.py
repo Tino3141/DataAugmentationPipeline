@@ -31,7 +31,18 @@ class MusicHandler:
         """
         # Get random music file from dataloade
         music = self.dataloader.get_random_music()
-        return music["opus"]["array"], music["opus"]["sampling_rate"]
+
+        # Resample if necessary
+        if music["opus"]["sampling_rate"] != self.sample_rate:
+            audio = librosa.resample(
+                music["opus"]["array"],
+                orig_sr=music["opus"]["sampling_rate"],
+                target_sr=self.sample_rate
+            )
+        else:
+            audio = music["opus"]["array"]
+            # music["opus"]["sampling_rate"] = self.sample_rate
+        return audio,  self.sample_rate
     
     def apply_crossfade(self, audio1: np.ndarray, audio2: np.ndarray, 
                         position: int, fade_length: int) -> np.ndarray:
@@ -47,6 +58,12 @@ class MusicHandler:
         Returns:
             np.ndarray: Combined audio with crossfade
         """
+        # Ensure fade_length does not exceed available samples
+        available1 = len(audio1) - position
+        available2 = len(audio2)
+        fade_length = min(fade_length, available1, available2)
+        if fade_length <= 0:
+            return audio1.copy()
         # Create fade curves
         fade_out = np.linspace(1, 0, fade_length)
         fade_in = np.linspace(0, 1, fade_length)
@@ -120,7 +137,6 @@ class MusicHandler:
         
         Args:
             audio (np.ndarray): Main audio signal
-            music_path (str): Path to the music file
             music_volume (float): Volume level for music (0.0 to 1.0)
             loop_music (bool): Whether to loop music if shorter than audio
             
@@ -139,13 +155,18 @@ class MusicHandler:
                 music = np.pad(music, (0, pad_length), mode='constant')
         else:
             music = music[:len(audio)]
+
             
         # Apply volume adjustment
         music = music * music_volume
         
         # Mix with main audio
-        result = audio + music
-        
+        try:
+            result = audio + music
+        except Exception as e:
+            print("Error mixing audio and music. Ensure they are the same shape.")
+            print(f"Audio shape: {audio.shape}, Music shape: {music.shape}")
+            raise Exception("Audio and music shapes do not match.")
         # Normalize to prevent clipping
         max_val = np.max(np.abs(result))
         if max_val > 1.0:
@@ -157,7 +178,7 @@ class MusicHandler:
         self,
         audio: np.ndarray,
         music_volume: float = 0.2,
-        loop_music: bool = True
+        loop_music: bool = False
     ) -> np.ndarray:
         """
         Add background music from a directory to the audio.
@@ -177,4 +198,4 @@ class MusicHandler:
             audio=audio,
             music_volume=music_volume,
             loop_music=loop_music
-        ) 
+        )

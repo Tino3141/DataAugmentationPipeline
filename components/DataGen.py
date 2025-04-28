@@ -9,6 +9,7 @@ import soundfile as sf
 import tarfile
 import numpy as np
 from pydub import AudioSegment
+from tqdm import tqdm
 
 from components.AudioConversation import AudioConversation
 from components.MusicHandler import MusicHandler
@@ -25,7 +26,9 @@ class DataGen:
         max_sound_effect_length: float = 2.0,
         coverage: float = 0.3,
         min_gap: float = 1.0,
-        effect_gain: float = 0.5
+        effect_gain: float = 0.5,
+        speakers: Optional[int] = 2,
+        num_segments: Optional[int] = 10,
     ):
         """
         Initialize DataGen with pipeline components and generation parameters.
@@ -38,6 +41,8 @@ class DataGen:
         self.max_sound_effect_length = max_sound_effect_length
         self.coverage = coverage
         self.min_gap = min_gap
+        self.speakers = speakers
+        self.num_segments = num_segments
         os.makedirs(self.output_dir, exist_ok=True)
 
         # Initialize pipeline components
@@ -59,8 +64,7 @@ class DataGen:
         sample_count = 0
         tar = None
 
-        for i in range(1, self.n_samples + 1):
-            print(f"Generating sample {i}/{self.n_samples}")
+        for i in tqdm(range(1, self.n_samples + 1)):
             # Open a new shard file if needed
             if sample_count % self.files_per_tar == 0:
                 if tar is not None:
@@ -71,8 +75,8 @@ class DataGen:
                 sample_count = 0
 
             # Generate segments and apply gaps
-            speakers = self.dataloader.get_random_speakers(2)
-            segments = self.audio_conversation.arrangeSegments(speakers, 10)
+            speakers = self.dataloader.get_random_speakers(self.speakers)
+            segments = self.audio_conversation.arrangeSegments(speakers, self.num_segments)
             segments = self.audio_conversation.applyGaussianGap(segments, 0, self.min_gap)
 
             # Render to a temporary WAV and process

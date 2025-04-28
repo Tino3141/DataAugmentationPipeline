@@ -91,7 +91,8 @@ def main():
         max_sound_effect_length=args.max_sound_effect_length,
         coverage=args.coverage,
         min_gap=args.min_gap,
-        effect_gain=args.effect_gain
+        effect_gain=args.effect_gain,
+        speakers=3,
     )
     print("Starting data generation...")
     generator.generate_data()
