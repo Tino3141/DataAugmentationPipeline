@@ -1,7 +1,92 @@
 [
     {
         "language": "EN",
-        "id": "EN_B00000_S01020",
-        "segment": " And then a 10k run, so that's 6.2 miles.",
-        "file_name": "EN_B00000_S01020_W000000.mp3",
-        "audio": 
+        "id": "EN_B00000_S05382",
+        "segment": " When you walk along",
+        "file_name": "EN_B00000_S05382_W000000.mp3",
+        "sampling_rate": 24000,
+        "start": 0,
+        "end": 3.837
+    },
+    {
+        "language": "EN",
+        "id": "EN_B00000_S05382",
+        "segment": " Das Problem, das was wir hier in der Kino sehen, ist im Prinzip...",
+        "file_name": "EN_B00000_S05382_W000001.mp3",
+        "sampling_rate": 24000,
+        "start": 4.671537775047072,
+        "end": 7.877999999999999
+    },
+    {
+        "language": "EN",
+        "id": "EN_B00000_S05382",
+        "segment": " The economic interests override everything else",
+        "file_name": "EN_B00000_S05382_W000002.mp3",
+        "sampling_rate": 24000,
+        "start": 8.497871811043987,
+        "end": 14.176999999999998
+    },
+    {
+        "language": "EN",
+        "id": "EN_B00000_S05382",
+        "segment": " The critique is yeaah, the Ausweitung der Kino in der Pampa.",
+        "file_name": "EN_B00000_S05382_W000003.mp3",
+        "sampling_rate": 24000,
+        "start": 14.584271597058493,
+        "end": 18.115999999999996
+    },
+    {
+        "language": "DE",
+        "id": "DE_B00000_S02411",
+        "segment": " Er kann nicht anfangen, liebe Genossinnen und Genossen, unmögliche Fernsehen. Er hätte eine andere Rede machen müssen. Er hätte eine Rede machen für die Bürgerinnen und Bürger. Nun hatte er nicht zwei.",
+        "file_name": "DE_B00000_S02411_W000000.mp3",
+        "sampling_rate": 24000,
+        "start": 18.613847583195295,
+        "end": 28.116
+    },
+    {
+        "language": "DE",
+        "id": "DE_B00000_S02411",
+        "segment": " Aber da muss man sich dann hinsetzen und sagen, ist egal, ich kürze das, ich muss ja nicht so ewig sprechen, sondern ich muss über die Probleme von heute sprechen und welche Vorstellung ich habe, sie zu lösen.",
+        "file_name": "DE_B00000_S02411_W000001.mp3",
+        "sampling_rate": 24000,
+        "start": 28.558633000355545,
+        "end": 37.760000000000005
+    },
+    {
+        "language": "DE",
+        "id": "DE_B00000_S02411",
+        "segment": " Da hab ich ja eine Sache gesagt, die ich dann später korrigiert habe.",
+        "file_name": "DE_B00000_S02411_W000002.mp3",
+        "sampling_rate": 24000,
+        "start": 37.826122318571244,
+        "end": 41.76699999999999
+    },
+    {
+        "language": "DE",
+        "id": "DE_B00000_S02411",
+        "segment": " Und tatsächlich abends klingelte das Telefon und Günther Schabowski war drin.",
+        "file_name": "DE_B00000_S02411_W000003.mp3",
+        "sampling_rate": 24000,
+        "start": 42.16597613729194,
+        "end": 45.892
+    },
+    {
+        "language": "DE",
+        "id": "DE_B00000_S02411",
+        "segment": " Man sagt dir, ja, der Egon Krins hat sich dafür nicht interessiert. Der hat gesagt, das bleibt bei dem Entwurf, der schon verabschiedet ist. Er hätte jetzt dazu auch keine Zeit. Tut mir leid, kann ich dir nichts anderes sagen. Na, okay.",
+        "file_name": "DE_B00000_S02411_W000004.mp3",
+        "sampling_rate": 24000,
+        "start": 46.45261017168878,
+        "end": 57.538999999999994
+    },
+    {
+        "language": "DE",
+        "id": "DE_B00000_S02411",
+        "segment": " Das Vertrauen in Modro wuchs in der Bevölkerung und das zu Grenz nicht. Er war eben durch seine Position vorher schon",
+        "file_name": "DE_B00000_S02411_W000005.mp3",
+        "sampling_rate": 24000,
+        "start": 58.237576663637995,
+        "end": 65.366
+    }
+]

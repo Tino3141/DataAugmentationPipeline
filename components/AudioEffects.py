@@ -3,9 +3,10 @@ import librosa
 import random
 from typing import Tuple, List, Optional
 import os
+from components.Dataloaders import Dataloader
 
 class AudioEffects:
-    def __init__(self, sample_rate: int = 48000, max_sound_effect_length: float = 2.0):
+    def __init__(self, dataloader: Dataloader, sample_rate: int = 48000, max_sound_effect_length: float = 2.0, effect_gain: float = 0.5):
         """
         Initialize AudioEffects with configuration parameters.
         
@@ -13,8 +14,11 @@ class AudioEffects:
             sample_rate (int): Target sample rate for audio processing
             max_sound_effect_length (float): Maximum length of sound effects in seconds
         """
+        self.dataloader = dataloader
         self.sample_rate = sample_rate
         self.max_sound_effect_length = max_sound_effect_length
+        # Gain factor for sound effects (linear scale)
+        self.effect_gain = effect_gain
         
     def apply_fade(self, audio: np.ndarray, fade_duration: float = 0.1) -> np.ndarray:
         """
@@ -28,6 +32,8 @@ class AudioEffects:
             np.ndarray: Processed audio with fades applied
         """
         fade_length = int(fade_duration * self.sample_rate)
+        # Limit fade_length to at most half the audio length to avoid broadcast errors
+        fade_length = min(fade_length, len(audio) // 2)
         
         # Create fade-in and fade-out curves
         fade_in = np.linspace(0, 1, fade_length)
@@ -39,7 +45,7 @@ class AudioEffects:
         
         return audio
     
-    def load_sound_effect(self, effect_path: str) -> Tuple[np.ndarray, int]:
+    def load_sound_effect(self) -> Tuple[np.ndarray, int]:
         """
         Load and preprocess a sound effect.
         
@@ -50,11 +56,10 @@ class AudioEffects:
             Tuple[np.ndarray, int]: Processed sound effect and its sample rate
         """
         # Load sound effect
-        effect, sr = librosa.load(effect_path, sr=self.sample_rate)
-        
+        effect = self.dataloader.get_random_sound_effect()
         # Resample if necessary
-        if sr != self.sample_rate:
-            effect = librosa.resample(effect, orig_sr=sr, target_sr=self.sample_rate)
+        # if sr != self.sample_rate:
+        #     effect = librosa.resample(effect, orig_sr=sr, target_sr=self.sample_rate)
         
         # Trim to maximum length
         max_samples = int(self.max_sound_effect_length * self.sample_rate)
@@ -63,6 +68,8 @@ class AudioEffects:
             
         # Apply fades
         effect = self.apply_fade(effect)
+        # Adjust effect loudness
+        effect = effect * self.effect_gain
         
         return effect, self.sample_rate
     
@@ -96,7 +103,6 @@ class AudioEffects:
     def apply_sound_effects(
         self,
         audio: np.ndarray,
-        sound_effects_dir: str,
         coverage: float = 0.3,
         min_gap: float = 1.0
     ) -> np.ndarray:
@@ -112,13 +118,6 @@ class AudioEffects:
         Returns:
             np.ndarray: Audio with sound effects applied
         """
-        # Get list of sound effect files
-        effect_files = [f for f in os.listdir(sound_effects_dir) 
-                       if f.endswith(('.wav', '.mp3', '.ogg'))]
-        
-        if not effect_files:
-            return audio
-            
         # Calculate minimum gap in samples
         min_gap_samples = int(min_gap * self.sample_rate)
         
@@ -129,12 +128,8 @@ class AudioEffects:
         while position < len(audio):
             # Decide whether to add sound effect
             if random.random() < coverage:
-                # Select random sound effect
-                effect_file = random.choice(effect_files)
-                effect_path = os.path.join(sound_effects_dir, effect_file)
-                
                 # Load and process effect
-                effect, _ = self.load_sound_effect(effect_path)
+                effect, _ = self.load_sound_effect()
                 
                 # Apply effect if there's enough space
                 if position + len(effect) <= len(audio):

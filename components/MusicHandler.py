@@ -3,9 +3,10 @@ import librosa
 import random
 from typing import Tuple, List, Optional, Dict
 import os
+from components.Dataloaders import Dataloader
 
 class MusicHandler:
-    def __init__(self, sample_rate: int = 48000, crossfade_duration: float = 2.0):
+    def __init__(self, dataloader: Dataloader, sample_rate: int = 48000, crossfade_duration: float = 2.0):
         """
         Initialize MusicHandler with configuration parameters.
         
@@ -16,8 +17,9 @@ class MusicHandler:
         self.sample_rate = sample_rate
         self.crossfade_duration = crossfade_duration
         self.music_cache = {}  # Cache for loaded music files
-        
-    def load_music(self, music_path: str) -> Tuple[np.ndarray, int]:
+        self.dataloader = dataloader
+
+    def load_music(self) -> Tuple[np.ndarray, int]:
         """
         Load and preprocess a music file.
         
@@ -27,21 +29,9 @@ class MusicHandler:
         Returns:
             Tuple[np.ndarray, int]: Processed music and its sample rate
         """
-        # Check if already in cache
-        if music_path in self.music_cache:
-            return self.music_cache[music_path]
-            
-        # Load music
-        music, sr = librosa.load(music_path, sr=self.sample_rate)
-        
-        # Resample if necessary
-        if sr != self.sample_rate:
-            music = librosa.resample(music, orig_sr=sr, target_sr=self.sample_rate)
-            
-        # Cache the result
-        self.music_cache[music_path] = (music, self.sample_rate)
-        
-        return music, self.sample_rate
+        # Get random music file from dataloade
+        music = self.dataloader.get_random_music()
+        return music["opus"]["array"], music["opus"]["sampling_rate"]
     
     def apply_crossfade(self, audio1: np.ndarray, audio2: np.ndarray, 
                         position: int, fade_length: int) -> np.ndarray:
@@ -122,7 +112,6 @@ class MusicHandler:
     def mix_music_with_audio(
         self,
         audio: np.ndarray,
-        music_path: str,
         music_volume: float = 0.2,
         loop_music: bool = True
     ) -> np.ndarray:
@@ -139,7 +128,7 @@ class MusicHandler:
             np.ndarray: Combined audio with background music
         """
         # Load music
-        music, _ = self.load_music(music_path)
+        music, _ = self.load_music()
         
         # Loop music if needed
         if loop_music and len(music) < len(audio):
@@ -164,7 +153,6 @@ class MusicHandler:
     def add_background_music(
         self,
         audio: np.ndarray,
-        music_dir: str,
         music_volume: float = 0.2,
         loop_music: bool = True
     ) -> np.ndarray:
@@ -179,22 +167,11 @@ class MusicHandler:
             
         Returns:
             np.ndarray: Audio with background music
-        """
-        # Get list of music files
-        music_files = [f for f in os.listdir(music_dir) 
-                      if f.endswith(('.wav', '.mp3', '.ogg', '.flac'))]
-        
-        if not music_files:
-            return audio
-            
-        # Select random music file
-        music_file = random.choice(music_files)
-        music_path = os.path.join(music_dir, music_file)
+        """        
         
         # Mix music with audio
         return self.mix_music_with_audio(
             audio=audio,
-            music_path=music_path,
             music_volume=music_volume,
             loop_music=loop_music
         ) 

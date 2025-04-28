@@ -27,6 +27,14 @@ class Dataloader:
         selected_speakers = np.random.choice(self.unique_speakers_list, size=min(num_speakers, len(self.unique_speakers_list)), replace=False)
         return [{'language': speaker.split('_')[0], 'key': speaker, 'counter': 0} for speaker in selected_speakers]
 
+    def get_random_music(self):
+        random_index = np.random.randint(0, len(self.background_music["train"]))
+        return self.background_music["train"][random_index]
+    
+    def get_random_sound_effect(self):
+        random_index = np.random.randint(0, len(self.sound_effects["train"]))
+        return self.sound_effects["train"][random_index][list(self.sound_effects["train"][random_index].keys())[0]]["array"]
+    
     def _load_sound_effects(self, dataset_path: str):
         self.sound_effects = load_dataset(dataset_path)
 
@@ -36,7 +44,9 @@ class Dataloader:
     def _load_speech_samples(self, dataset_path: str):
         self.speech_samples = load_dataset(dataset_path)
 
-
+class ConversationDataloader:
+    def __init__(self, path:str):
+        pass
 
     
 

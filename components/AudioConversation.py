@@ -45,17 +45,19 @@ class AudioConversation:
                 return segments
                 
             # Pick random valid speaker
-            valid_speakers = [s for s in speakers if s['counter'] < len(self.getSegmentsForSpeaker(speaker['key']))]
+            valid_speakers = [s for s in speakers if s['counter'] < len(self.getSegmentsForSpeaker(s['key']))]
             speaker = random.choice(valid_speakers)
             # Take segment from speaker
             speaker_segments = self.getSegmentsForSpeaker(speaker['key'])
             try:
                 segment = speaker_segments[speaker['counter']]
             except:
+                print(len(valid_speakers))
                 print("Speaker has no more segments: ", speaker['key'])
                 print(len(speaker_segments))
                 print(speaker['counter'])
-                raise Exception("Speaker has no more segments: ", speaker['key'])
+                print("Segments for Speaker: ", len(speaker_segments))
+                continue
             segments.append({
                 "language": speaker['language'],
                 "id": speaker['key'],
@@ -77,8 +79,8 @@ class AudioConversation:
             # If same speaker, ensure gap is positive
             if segments[i]["id"] == segments[i-1]["id"]:
                 gap = abs(gap)
-            if gap < 0:
-                print("Gap is negative: ", gap)
+            # if gap < 0:
+            #     print("Gap is negative: ", gap)
             segments[i]["start"] = 0 + gap if i == 0 else segments[i-1]["end"] + gap
             segments[i]["end"] = segments[i]["end"] - segments[i]["start"] + gap if i == 0 else segments[i-1]["end"] + gap + segments[i]["end"] - segments[i]["start"]
         return segments
@@ -94,13 +96,14 @@ class AudioConversation:
         for segment in segments:
             # Use the audio data directly from the segment
             # The audio data is already loaded in the 'audio' field
+            audio_data = np.int16(segment['audio'] * 32767)
             segment_audio = AudioSegment(
-                data=segment['audio'],
+                data=audio_data.tobytes(),
                 sample_width=2,  # Assuming 16-bit audio
                 frame_rate=segment['sampling_rate'],  # Assuming 16kHz sample rate
                 channels=1  # Assuming mono audio
             )
-            
+
             # Calculate position in milliseconds
             start_ms = segment['start'] * 1000  # Convert to milliseconds
             
@@ -124,10 +127,18 @@ class AudioConversation:
         
         # Create output path
         output_path = os.path.join(output_dir, "output.wav")
-        self.createAudio(segments, audio_root, output_path)
+        self.createAudio(segments, output_path)
+
+        serializable_segments = []
+        for segment in segments:
+            # Create a copy of the segment without the audio field
+            serializable_segment = segment.copy()
+            if 'audio' in serializable_segment:
+                del serializable_segment['audio']
+            serializable_segments.append(serializable_segment)
 
         # Write segments to file
         with open(os.path.join(output_dir, "segments.json"), 'w', encoding='utf-8') as f:
-            json.dump(segments, f, ensure_ascii=False, indent=4)
+            json.dump(serializable_segments, f, ensure_ascii=False, indent=4)
 
         return segments
