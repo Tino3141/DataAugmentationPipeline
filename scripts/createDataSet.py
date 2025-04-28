@@ -24,7 +24,7 @@ def main():
     parser.add_argument(
         "--n_samples",
         type=int,
-        default=1,
+        default=2,
         help="Number of samples to generate"
     )
     parser.add_argument(
@@ -94,8 +94,7 @@ def main():
         effect_gain=args.effect_gain
     )
     print("Starting data generation...")
-    ds = generator.generate_data()
-    ds.save_to_disk(args.output_dir)
+    generator.generate_data()
     print("#########################")
     print("Data generation completed!")
     print("#########################")

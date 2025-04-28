@@ -6,7 +6,6 @@ import json
 import io
 import librosa
 import soundfile as sf
-from tqdm import tqdm
 import tarfile
 import numpy as np
 from pydub import AudioSegment
@@ -61,6 +60,7 @@ class DataGen:
         tar = None
 
         for i in range(1, self.n_samples + 1):
+            print(f"Generating sample {i}/{self.n_samples}")
             # Open a new shard file if needed
             if sample_count % self.files_per_tar == 0:
                 if tar is not None:
