@@ -24,20 +24,20 @@ def main():
     parser.add_argument(
         "--n_samples",
         type=int,
-        default=20,
+        default=5000,
         help="Number of samples to generate"
     )
     parser.add_argument(
         "--files_per_tar",
         type=int,
-        default=10,
+        default=200,
         help="Number of files per tar archive"
     )
 
     parser.add_argument(
         "--num_processors",
         type=int,
-        default=12,
+        default=24,
         help="Number of processors to use for parallel processing"
     )
     parser.add_argument(

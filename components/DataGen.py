@@ -112,7 +112,7 @@ class DataGen:
             self._generate_sample,
             range(1, self.n_samples + 1),
             max_workers=self.num_processors,
-            desc="Generating samples"
+            desc="Generating samples",
         )
         # Sequentially write shards
         shard_idx = 0

@@ -33,14 +33,15 @@ class MusicHandler:
         music = self.dataloader.get_random_music()
 
         # Resample if necessary
-        if music["opus"]["sampling_rate"] != self.sample_rate:
+        key = list(music.keys())[0]
+        if music[key]["sampling_rate"] != self.sample_rate:
             audio = librosa.resample(
-                music["opus"]["array"],
-                orig_sr=music["opus"]["sampling_rate"],
+                music[key]["array"],
+                orig_sr=music[key]["sampling_rate"],
                 target_sr=self.sample_rate
             )
         else:
-            audio = music["opus"]["array"]
+            audio = music[key]["array"]
             # music["opus"]["sampling_rate"] = self.sample_rate
         return audio,  self.sample_rate
     
