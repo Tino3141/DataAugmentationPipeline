@@ -8,10 +8,11 @@ from components.Dataloaders import Dataloader
 
 
 class AudioConversation:
-    def __init__(self,  data: Dataloader, sample_rate: int = 48000, languages: List[str] = ["DE", "EN"]):
+    def __init__(self,  data: Dataloader, num_speakers, sample_rate: int = 48000, languages: List[str] = ["DE", "EN"]):
         self.LANGUAGES = languages
         self.SAMPLE_RATE = sample_rate
         self.data = data
+        self.num_speakers = num_speakers
 
     def pickSpeakers(self,dict, num_speakers):
         available_keys = []
@@ -124,7 +125,7 @@ class AudioConversation:
         # Get total duration from last segment's end time
         total_duration_ms = segments[-1]['end'] * 1000  # Convert to milliseconds
         final_audio = AudioSegment.silent(duration=total_duration_ms)
-        
+        stems = {}
         # Add each segment
         for segment in segments:
             # Use the audio data directly from the segment
@@ -141,9 +142,16 @@ class AudioConversation:
             start_ms = segment['start'] * 1000  # Convert to milliseconds
             # Overlay segment at the correct position
             final_audio = final_audio.overlay(segment_audio, position=start_ms)
-        
+
+            if segment["id"] not in stems.keys():
+                stems[segment["id"]] = AudioSegment.silent(duration=total_duration_ms)
+            
+            # Overlay segment audio on the stem
+            stems[segment["id"]] = stems[segment["id"]].overlay(segment_audio, position=start_ms)
+
         # Export final audio
         final_audio.export(output_path, format="wav")
+        return stems
 
 
     def augmentAudio(self, segmentDict, num_speakers, num_segments, output_dir, audio_root, mean=0, std=0.75):

@@ -24,7 +24,7 @@ def main():
     parser.add_argument(
         "--n_samples",
         type=int,
-        default=5000,
+        default=1,
         help="Number of samples to generate"
     )
     parser.add_argument(
@@ -37,7 +37,7 @@ def main():
     parser.add_argument(
         "--num_processors",
         type=int,
-        default=24,
+        default=12,
         help="Number of processors to use for parallel processing"
     )
     parser.add_argument(

@@ -50,7 +50,7 @@ class DataGen:
         os.makedirs(self.output_dir, exist_ok=True)
 
         # Initialize pipeline components
-        self.audio_conversation = AudioConversation(self.dataloader)
+        self.audio_conversation = AudioConversation(self.dataloader, self.speakers)
         self.music_handler = MusicHandler(self.dataloader)
         self.audio_effects = AudioEffects(
             dataloader=self.dataloader,
@@ -67,7 +67,7 @@ class DataGen:
         # Render to a temporary WAV and process
         with tempfile.TemporaryDirectory() as tmpdir:
             raw_wav = os.path.join(tmpdir, f"sample_{i}.wav")
-            self.audio_conversation.createAudio(segments, raw_wav)
+            stems = self.audio_conversation.createAudio(segments, raw_wav)
             audio, sr = librosa.load(raw_wav, sr=self.sample_rate)
             audio = self.music_handler.add_background_music(audio)
             processed_audio = self.audio_effects.apply_sound_effects(
@@ -82,7 +82,7 @@ class DataGen:
         for idx, seg in enumerate(segments):
             entry = seg.copy()
             entry.pop('audio', None)
-            entry['stem_path'] = f"{key}_stem_{idx}.mp3"
+            entry['stem_path'] = f"{key}_s_{idx}.mp3"
             meta.append(entry)
         meta_bytes = json.dumps({"segments": meta}, ensure_ascii=False).encode("utf-8")
         # Prepare stems bytes
@@ -99,8 +99,8 @@ class DataGen:
         final_buf = io.BytesIO()
         final_seg.export(final_buf, format="mp3")
         # Assemble stems list
-        stems = [(f"{key}_stem_{idx}.mp3", data) for idx, data in enumerate(stem_bytes_list)]
-        return key, meta_bytes, stems, final_buf.getvalue()
+        segments = [(f"{key}.s_{idx}.mp3", data) for idx, data in enumerate(stem_bytes_list)]
+        return key, meta_bytes, segments,stems, final_buf.getvalue()
 
     def generate_data(self):
         """
@@ -118,7 +118,7 @@ class DataGen:
         shard_idx = 0
         sample_count = 0
         tar = None
-        for key, meta_bytes, stems, final_bytes in sample_results:
+        for key, meta_bytes, seg, stems, final_bytes in sample_results:
             if sample_count % self.files_per_tar == 0:
                 if tar is not None:
                     tar.close()
@@ -131,12 +131,21 @@ class DataGen:
             meta_info = tarfile.TarInfo(f"{key}.json")
             meta_info.size = len(meta_bytes)
             tar.addfile(meta_info, meta_buf)
-            # add stems
-            for stem_filename, stem_data in stems:
+            # add seg
+            for stem_filename, stem_data in seg:
                 stem_buf = io.BytesIO(stem_data)
                 stem_info = tarfile.TarInfo(stem_filename)
                 stem_info.size = len(stem_data)
                 tar.addfile(stem_info, stem_buf)
+
+            # add stems
+            for idx, (key_stem, stem_audioseg) in enumerate(stems.items()):
+                stem_buf = io.BytesIO()
+                stem_audioseg.export(stem_buf, format="mp3")
+                stem_data = stem_buf.getvalue()
+                stem_info = tarfile.TarInfo(f"{key}.stem_{idx}.mp3")
+                stem_info.size = len(stem_data)
+                tar.addfile(stem_info, io.BytesIO(stem_data))
             # add final mix
             final_buf = io.BytesIO(final_bytes)
             final_info = tarfile.TarInfo(f"{key}.mp3")
