@@ -85,7 +85,7 @@ class DataGen:
             entry['stem_path'] = f"{key}_s_{idx}.mp3"
             meta.append(entry)
         meta_bytes = json.dumps({"segments": meta}, ensure_ascii=False).encode("utf-8")
-        # Prepare stems bytes
+        # Prepare segments bytes
         stem_bytes_list = []
         for idx, seg in enumerate(segments):
             pcm = (seg['audio'] * np.iinfo(np.int16).max).astype(np.int16).tobytes()
@@ -93,6 +93,12 @@ class DataGen:
             buf = io.BytesIO()
             stem_seg.export(buf, format="mp3")
             stem_bytes_list.append(buf.getvalue())
+        # Prepare stem audio segments
+        for idx, (key_stem, stem_audioseg) in enumerate(stems.items()):
+            stem_buf = io.BytesIO()
+            stem_audioseg.export(stem_buf, format="mp3")
+            stem_data = stem_buf.getvalue()
+            stems[key_stem] = stem_data
         # Prepare final mix bytes
         final_pcm = (processed_audio * np.iinfo(np.int16).max).astype(np.int16).tobytes()
         final_seg = AudioSegment(final_pcm, frame_rate=self.sample_rate, sample_width=2, channels=1)
@@ -139,10 +145,10 @@ class DataGen:
                 tar.addfile(stem_info, stem_buf)
 
             # add stems
-            for idx, (key_stem, stem_audioseg) in enumerate(stems.items()):
-                stem_buf = io.BytesIO()
-                stem_audioseg.export(stem_buf, format="mp3")
-                stem_data = stem_buf.getvalue()
+            for idx, (key_stem, stem_data) in enumerate(stems.items()):
+                # stem_buf = io.BytesIO()
+                # stem_audioseg.export(stem_buf, format="mp3")
+                # stem_data = stem_buf.getvalue()
                 stem_info = tarfile.TarInfo(f"{key}.stem_{idx}.mp3")
                 stem_info.size = len(stem_data)
                 tar.addfile(stem_info, io.BytesIO(stem_data))
