@@ -10,7 +10,7 @@ import tarfile
 import numpy as np
 from pydub import AudioSegment
 from tqdm import tqdm
-from tqdm.contrib.concurrent import process_map
+from multiprocessing import Pool
 import time
 
 from components.AudioConversation import AudioConversation
@@ -93,6 +93,13 @@ class DataGen:
             buf = io.BytesIO()
             stem_seg.export(buf, format="mp3")
             stem_bytes_list.append(buf.getvalue())
+        for i in range (idx, self.num_segments-1):
+            # add empty segments (0 Second audio)
+            seg = AudioSegment.silent(duration=0)
+            buf = io.BytesIO()
+            seg.export(buf, format="mp3")
+            stem_bytes_list.append(buf.getvalue())
+
         # Prepare stem audio segments
         for idx, (key_stem, stem_audioseg) in enumerate(stems.items()):
             stem_buf = io.BytesIO()
@@ -113,50 +120,49 @@ class DataGen:
         Generate synthetic audio samples and save them as WebDataset shards (tar files).
         """
         os.makedirs(self.output_dir, exist_ok=True)
-        # Parallel generation of samples with progress bar
-        sample_results = process_map(
-            self._generate_sample,
-            range(1, self.n_samples + 1),
-            max_workers=self.num_processors,
-            desc="Generating samples",
-        )
-        # Sequentially write shards
+        from tqdm import tqdm  # ensure tqdm is imported
         shard_idx = 0
         sample_count = 0
         tar = None
-        for key, meta_bytes, seg, stems, final_bytes in sample_results:
-            if sample_count % self.files_per_tar == 0:
-                if tar is not None:
-                    tar.close()
-                shard_path = os.path.join(self.output_dir, f"shard_{shard_idx:05d}.tar")
-                tar = tarfile.open(shard_path, "w")
-                shard_idx += 1
-                sample_count = 0
-            # add metadata JSON
-            meta_buf = io.BytesIO(meta_bytes)
-            meta_info = tarfile.TarInfo(f"{key}.json")
-            meta_info.size = len(meta_bytes)
-            tar.addfile(meta_info, meta_buf)
-            # add seg
-            for stem_filename, stem_data in seg:
-                stem_buf = io.BytesIO(stem_data)
-                stem_info = tarfile.TarInfo(stem_filename)
-                stem_info.size = len(stem_data)
-                tar.addfile(stem_info, stem_buf)
-
-            # add stems
-            for idx, (key_stem, stem_data) in enumerate(stems.items()):
-                # stem_buf = io.BytesIO()
-                # stem_audioseg.export(stem_buf, format="mp3")
-                # stem_data = stem_buf.getvalue()
-                stem_info = tarfile.TarInfo(f"{key}.stem_{idx}.mp3")
-                stem_info.size = len(stem_data)
-                tar.addfile(stem_info, io.BytesIO(stem_data))
-            # add final mix
-            final_buf = io.BytesIO(final_bytes)
-            final_info = tarfile.TarInfo(f"{key}.mp3")
-            final_info.size = len(final_bytes)
-            tar.addfile(final_info, final_buf)
-            sample_count += 1
+        # Stream generation and writing of samples
+        with Pool(self.num_processors) as pool:
+            for key, meta_bytes, seg, stems, final_bytes in tqdm(
+                pool.imap(self._generate_sample, range(1, self.n_samples + 1)),
+                total=self.n_samples,
+                desc="Generating samples"
+            ):
+                if sample_count % self.files_per_tar == 0:
+                    if tar is not None:
+                        tar.close()
+                    shard_path = os.path.join(self.output_dir, f"shard_{shard_idx:05d}.tar")
+                    tar = tarfile.open(shard_path, "w")
+                    shard_idx += 1
+                    sample_count = 0
+                # add metadata JSON
+                meta_buf = io.BytesIO(meta_bytes)
+                meta_info = tarfile.TarInfo(f"{key}.json")
+                meta_info.size = len(meta_bytes)
+                tar.addfile(meta_info, meta_buf)
+                # add seg
+                for idx, (stem_filename, stem_data) in enumerate(seg):
+                    stem_buf = io.BytesIO(stem_data)
+                    stem_info = tarfile.TarInfo(stem_filename)
+                    stem_info.size = len(stem_data)
+                    tar.addfile(stem_info, stem_buf)
+                
+                # add stems
+                for idx, (key_stem, stem_data) in enumerate(stems.items()):
+                    # stem_buf = io.BytesIO()
+                    # stem_audioseg.export(stem_buf, format="mp3")
+                    # stem_data = stem_buf.getvalue()
+                    stem_info = tarfile.TarInfo(f"{key}.stem_{idx}.mp3")
+                    stem_info.size = len(stem_data)
+                    tar.addfile(stem_info, io.BytesIO(stem_data))
+                # add final mix
+                final_buf = io.BytesIO(final_bytes)
+                final_info = tarfile.TarInfo(f"{key}.mp3")
+                final_info.size = len(final_bytes)
+                tar.addfile(final_info, final_buf)
+                sample_count += 1
         if tar is not None:
             tar.close()

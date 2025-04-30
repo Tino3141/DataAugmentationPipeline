@@ -30,7 +30,7 @@ def main():
     parser.add_argument(
         "--files_per_tar",
         type=int,
-        default=200,
+        default=10,
         help="Number of files per tar archive"
     )
 
